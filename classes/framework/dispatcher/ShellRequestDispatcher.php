@@ -2,6 +2,7 @@
 
 
 namespace framework\dispatcher;
+use framework\util\Daemon;
 
 /**
  * 用于执行控制台脚本的请求转发器。
@@ -30,6 +31,14 @@ class ShellRequestDispatcher extends RequestDispatcherBase {
             $this->ctrlClassName = $arr[1] . 'Ctrl';
             $this->ctrlMethodName = $arr[2];
         }
+    }
+
+    public function dispatch() {
+        if($this->daemon) {
+            $deamon = new Daemon($GLOBALS['DAEMON_CONFIG']);
+            $deamon->start();
+        }
+        parent::dispatch();
     }
 
     public function getCtrlClassName() {
