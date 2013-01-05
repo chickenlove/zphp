@@ -36,7 +36,7 @@ redis-stroage地址: https://github.com/qiye/redis-storage
 =============
     
     cd 程序目录
-    php webroot/index.php Chat.new -d (以daemon方式启动)
+    php webroot/index.php Chat.newstart -d (以daemon方式启动)
     
     客户端： telnet host ip （host ,ip 在 inf/default/define.php 里设置 ）
 
@@ -46,7 +46,7 @@ php版key=>value数据库Demo (基于memcache协议):
 =====================
     
     cd 程序目录
-    php webroot/index.php Memcache.new
+    php webroot/index.php Memcache.newstart
     
     客户端： 可以像操作memcache一样操作，目前支持的命令（get ,set delete）
 

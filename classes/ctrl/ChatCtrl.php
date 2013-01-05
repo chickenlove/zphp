@@ -31,7 +31,7 @@ class ChatCtrl
         $socket->run();
     }
 
-    public function new() {
+    public function newstart() {
         $loop = \React\EventLoop\Factory::create();
         $socket = new \React\Socket\Server($loop);
 
