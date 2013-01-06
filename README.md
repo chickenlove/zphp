@@ -13,7 +13,7 @@ zphp是一个极轻的的，专用于社交游戏 && 网页游戏的服务器端
     cache      (apc, memcache, redis, xcache), 
     db         (mysql)，
     队列       (beanstalk, redis)，
-    排行榜     (beanstalk)，
+    排行榜     (redis)，
     socket     (tcp),
     daemon     (cli模式下，加 -d 即可)
 
