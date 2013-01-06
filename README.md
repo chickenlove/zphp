@@ -5,18 +5,20 @@ zphp
 
 @email: shenzhe163@gmail.com
 
-a php framework,  专用于社交游戏 && 网页游戏的服务器端开发框架
+zphp是一个极轻的的，专用于社交游戏 && 网页游戏的服务器端开发框架， 核心只提供类自动载入，路由功能，你甚至感知不到框架的存在，基本上直接写一个一个模块就行了。
 
-zphp是一个极轻的框架，核心只提供类自动载入，路由功能，跟据游戏的特性，提供：存储(ttserver, redis, redis-storage)，cache(apc, memcache, redis, xcache), db(mysql)，队列(beanstalk, redis)，socket功能，你可能会发现存储居然没有mysql,这就是游戏,特别是社交游戏的特性：高并发，读写几乎都是并存的，没有明显冷数据，mysql不太适合这个场景
+根据游戏的特性，框架集成以下功能：
 
-要求：php5.3+
+    存储       (ttserver, redis, redis-storage)，
+    cache      (apc, memcache, redis, xcache), 
+    db         (mysql)，
+    队列       (beanstalk, redis)，
+    排行榜     (beanstalk)，
+    socket     (tcp),
+    daemon     (cli模式下，加 -d 即可)
 
-更新
-===================
+要求：php5.3+， 建议使用php5.4+  (如果使用react做为socket，  必需php5.4+)
 
-2012-12-29: 更换socket层为：react, 独立于框架，类node语法，使socket使用更稳定和方便。
-
-2012-12-29: 增加daemon支持（命令行后加 -d 即可），可以把服务变成一个daemon, 可接收进程控制信号，进行服务关闭，重启，重载等 
 
 socket需要libevent扩展 :
 ========================
