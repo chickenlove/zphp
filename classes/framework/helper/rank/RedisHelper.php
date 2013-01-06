@@ -5,7 +5,7 @@ namespace framework\helper\rank;
 use framework\manager;
 
 /**
- * redis 存储处理类
+ * redis 排行榜处理类
  */
 class RedisHelper implements IRank {
 
