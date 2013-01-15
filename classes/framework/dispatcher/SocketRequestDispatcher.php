@@ -32,9 +32,9 @@ class SocketRequestDispatcher extends RequestDispatcherBase {
                     $conn->end();
                     return;
                 }
-
-                $cmds = \framework\Util\Serialize::Unserialize($datas);
-                $_SERVER['SOCKET_PARAMS'] = $cmds;
+                $messagePack = \defined('MESSAGE_PACK') ? MESSAGE_PACK : 'json';
+                $cmds = \framework\Util\Serialize::Unserialize($datas, $messagePack);
+                $_SERVER['SOCKET_PARAMS'] = $cmds['params'];
                 $dispatcher->ctrlClassName = $cmds['a'];
                 $dispatcher->ctrlMethodName = $cmds['m'];
                 $dispatcher->dispatch();

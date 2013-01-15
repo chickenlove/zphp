@@ -25,6 +25,16 @@ socket需要libevent扩展 :
 
 地址：https://github.com/shenzhe/php-libevent
 
+关于SocketRequestDispatcher约定 :
+========================
+socket传过来的数据是一个严格约定的数组：
+[
+    'a'=>ctrlName,    //ctrl类名
+    'm'=>methodName,  //方法名
+    'params'=>params  //参数
+]
+用了这种方式就可以和http无缝切换。
+
     
 特别支持redis-storage :
 =====================
