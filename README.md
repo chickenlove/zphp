@@ -27,6 +27,7 @@ socket需要libevent扩展 :
 
 关于SocketRequestDispatcher约定 :
 ========================
+<pre>
 socket传过来的数据是一个严格约定的数组：
 [
     'a'=>ctrlName,    //ctrl类名
@@ -34,6 +35,7 @@ socket传过来的数据是一个严格约定的数组：
     'params'=>params  //参数
 ]
 用了这种方式就可以和http无缝切换。
+</pre>
 
     
 特别支持redis-storage :
