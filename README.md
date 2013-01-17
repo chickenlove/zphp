@@ -23,7 +23,7 @@ zphp是一个极轻的的，专用于游戏(社交，网页，移动)的服务�
 socket需要libevent扩展 :
 ========================
 
-地址：https://github.com/shenzhe/php-libevent
+地址：http://pecl.php.net/package/libevent
 
 关于SocketRequestDispatcher约定 :
 ========================
@@ -36,6 +36,11 @@ socket传过来的数据是一个严格约定的数组：
 ]
 用了这种方式就可以和http无缝切换。
 </pre>
+
+rpc需要yar扩展 :
+========================
+
+地址：http://pecl.php.net/package/yar
 
     
 特别支持redis-storage :
