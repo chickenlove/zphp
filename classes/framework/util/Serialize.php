@@ -15,6 +15,9 @@ class Serialize {
             case 'msgpack':
                 return \msgpack_pack($data);
                 break;
+            case 'json':
+                return \json_encode($data);
+                break;
             default:
                 return \serialize($data);
         }
@@ -27,6 +30,9 @@ class Serialize {
                 break;
             case 'msgpack':
                 return \msgpack_unpack($data);
+                break;
+            case 'json':
+                return \json_decode($data, true);
                 break;
             default:
                 return \unserialize($data);

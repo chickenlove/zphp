@@ -42,6 +42,9 @@ class FileUtil {
     }
 
     public static function delDirectory($dir, $filter = null) {
+        if(!\is_dir($dir)) {
+            return true;
+        }
         $dirpath = \realpath($dir);
         $filenames = \scandir($dir);
         foreach ($filenames as $filename) {

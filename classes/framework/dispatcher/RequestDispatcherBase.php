@@ -20,6 +20,7 @@ abstract class RequestDispatcherBase implements IRequestDispatcher {
      * @var string
      */
     protected $defaultAction;
+    protected $display = true;
 
     public function dispatch() {
         $ctrlClass = Context::getCtrlNamespace() . "\\" . $this->getCtrlClassName();
@@ -38,10 +39,6 @@ abstract class RequestDispatcherBase implements IRequestDispatcher {
         if (!$filtered) {
             try {
                 $view = $ctrl->$ctrlMethod();
-
-                if ($view instanceof IView) {
-                    $view->display();
-                }
             } catch (\Exception $e) {
                 $exception = $e;
             }
@@ -54,6 +51,16 @@ abstract class RequestDispatcherBase implements IRequestDispatcher {
         if ($exception != null) {
             throw $exception;
         }
+
+        if ($view instanceof IView) {
+            if($this->display) {
+                $view->display();
+            } else {
+                return $view->getModel();
+            }
+        }
+
+
     }
 
     /**
