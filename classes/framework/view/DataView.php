@@ -13,6 +13,7 @@ use framework\view;
 class DataView {
     
     public static function getView($model = null, $displayMode='json', $fileName=null) {
+        $displayMode = strtolower($displayMode);
         switch ($displayMode) {
             case 'bin':
                 return new MsgpackView($model);
