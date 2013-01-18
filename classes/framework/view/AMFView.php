@@ -5,9 +5,9 @@ namespace framework\view;
 use framework\core\IView;
 
 /**
- * 字符串视图，向用户输出字符串
+ * amf视图，向用户输出amf
  */
-class StringView implements IView {
+class AMFView implements IView {
 
     private $model;
 
@@ -33,13 +33,17 @@ class StringView implements IView {
         return $this->model = $model;
     }
 
+    public function getXml() {
+        
+    }
+
     /**
      * 展示视图
      *
      */
     public function display() {
-        header("Content-Type:text/plain; charset=utf-8");
-        echo $this->model;
+        \header("Content-Type: text/xml; charset=utf-8");
+        echo \amf3_encode($this->model);
     }
 
 }

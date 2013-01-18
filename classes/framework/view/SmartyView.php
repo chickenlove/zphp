@@ -44,7 +44,7 @@ class SmartyView implements IView {
      * @param String $fileName Smarty模版文件名
      * @param mixed $model 用于展示的数据
      */
-    public function __construct($fileName, $model = null) {
+    public function __construct($model = null, $fileName=null) {
         $this->fileName = $fileName;
         $this->model = $model;
     }
@@ -118,7 +118,6 @@ class SmartyView implements IView {
      */
     public function display() {
         header("Content-Type: text/html; charset=utf-8");
-
         $this->output();
     }
 
