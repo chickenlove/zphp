@@ -66,19 +66,21 @@ class LRedisManager {
         return self::$instances[$name];
     }
 
-    /**
-     *
-     * 手动关闭链接
-     * @return boolean
-     */
-    public static function closeInstance($pconnect=false) {
+    public static function closeInstance($pconnect=false, array $names=[]) {
         if (empty(self::$instances) || $pconnect) {
             return true;
         }
 
-        foreach (self::$instances as $redis) {
-
-            \phpiredis_disconnect($redis);
+        if(empty($names)) {
+            foreach (self::$instances as $redis) {
+                $redis->close();
+            }
+        } else {
+            foreach($names as $name) {
+                if(isset(self::$instances[$name])) {
+                    self::$instances[$name]->close();
+                }
+            }
         }
 
         return true;
