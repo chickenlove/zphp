@@ -30,7 +30,9 @@ class PDOManager {
      * @param PDOConfiguration $config
      */
     public static function addConfigration($name, PDOConfiguration $config) {
-        self::$configs[$name] = $config;
+        if(empty(self::$configs[$name])) {
+            self::$configs[$name] = $config;
+        }
     }
 
     /**

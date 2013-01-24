@@ -35,7 +35,9 @@ class LRedisManager {
      * @param RedisConfiguration $config
      */
     public static function addConfigration($name, RedisConfiguration $config) {
-        self::$configs[$name] = $config;
+        if(empty(self::$configs[$name])) {
+            self::$configs[$name] = $config;
+        }
     }
 
     /**
@@ -69,12 +71,8 @@ class LRedisManager {
      * 手动关闭链接
      * @return boolean
      */
-    public static function closeInstance() {
-        if (empty(self::$instances)) {
-            return true;
-        }
-
-        if (\defined('CACHE_PCONNECT') && \CACHE_PCONNECT) {
+    public static function closeInstance($pconnect=false) {
+        if (empty(self::$instances) || $pconnect) {
             return true;
         }
 

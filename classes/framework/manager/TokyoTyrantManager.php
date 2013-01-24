@@ -30,7 +30,9 @@ class TokyoTyrantManager {
      * @param TokyoTyrantConfiguration $config
      */
     public static function addConfigration($name, TokyoTyrantConfiguration $config) {
-        self::$configs[$name] = $config;
+        if(empty(self::$configs[$name])) {
+            self::$configs[$name] = $config;
+        }
     }
 
     /**

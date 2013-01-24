@@ -14,10 +14,10 @@ class QueueHelper {
 
     public static function getInstance($type = "Redis", $name = "queue", $pconnect) {
         $cacheType = '\\framework\\helper\\queue\\' . $type . 'Helper';
-        if (!isset(self::$cache[$cacheType])) {
-            self::$cache[$cacheType] = new $cacheType($name, $pconnect);
+        if (!isset(self::$cache[$type . $name])) {
+            self::$cache[$type . $name] = new $cacheType($name, $pconnect);
         }
-        return self::$cache[$cacheType];
+        return self::$cache[$type . $name];
     }
 
 }
