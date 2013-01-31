@@ -46,7 +46,7 @@ rpc需要yar扩展 :
 特别支持redis-storage :
 =====================
 
-redis-stroage地址: https://github.com/qiye/redis-storage
+redis-stroage地址: https://github.com/shenzhe/redis-storage
 
 增强版phpredis扩展：https://github.com/shenzhe/phpredis
 

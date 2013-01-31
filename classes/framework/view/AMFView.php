@@ -42,7 +42,7 @@ class AMFView implements IView {
      *
      */
     public function display() {
-        \header("Content-Type: text/xml; charset=utf-8");
+        \header("Content-Type: application/amf; charset=utf-8");
         echo \amf3_encode($this->model);
     }
 

@@ -127,11 +127,8 @@ class LRedisHelper implements IStorage {
 
         $uKey = $this->uKey($userId);
         $dsKey = $this->dsKey($uKey, $key);
-        if ($this->redis->dsDel($dsKey)) {
-            return $this->redis->hDel($uKey, $key);
-        }
-
-        return false;
+        $this->redis->dsDel($dsKey);
+        return return this->redis->hDel($uKey, $key);;
     }
 
     public function setMultiMD($userId, $keys) {
