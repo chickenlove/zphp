@@ -61,6 +61,8 @@ redis-stroage地址: https://github.com/shenzhe/redis-storage
 
     php webroot/index.php Chat.stop (关闭服务)
     
+在线demo: http://42.121.128.32/
+    
 php版key=>value数据库Demo (基于memcache协议):
 =====================
     
