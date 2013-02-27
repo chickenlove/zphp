@@ -38,7 +38,6 @@ class RedisHelper implements ICacheHelper {
     }
 
     public function addToCache($key, $value, $expiration = 0) {
-        $value = \igbinary_serialize($value);
         return $this->set($key, $value, $expiration);
     }
 
@@ -47,7 +46,7 @@ class RedisHelper implements ICacheHelper {
     }
 
     public function getCache($key) {
-        return \igbinary_unserialize($this->get($key));
+        return $this->get($key);
     }
 
     public function delete($key) {
