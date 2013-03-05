@@ -27,15 +27,16 @@ class SocketRequestDispatcher extends RequestDispatcherBase {
                     return ;
                 }
                 if('<policy-file-request/>' == $datas) {
-                    $policyData = file_get_contents(Context::getRootPath().DIRECTORY_SEPARATOR.'webroot'.DIRECTORY_SEPARATOR.'crossdomain.xml');
+                    $policyData = \file_get_contents(Context::getRootPath().DIRECTORY_SEPARATOR.'webroot'.DIRECTORY_SEPARATOR.'crossdomain.xml');
                     $conn->write("$policyData\0");
                     $conn->end();
                     return;
                 }
 
-                $messagePack = \defined('MESSAGE_PACK') ? c : 'json';
+                $messagePack = \defined('MESSAGE_PACK') ? MESSAGE_PACK : 'json';
                 $cmds = \framework\Util\Serialize::Unserialize($datas, $messagePack);
-                $_REQUEST = $cmds['params'];
+                $cmds['params']['conn'] = $conn;
+                $_SERVER['SOCKET_PARAMS'] = $cmds['params'];
                 $dispatcher->ctrlClassName = $cmds['a'];
                 $dispatcher->ctrlMethodName = $cmds['m'];
                 $dispatcher->dispatch();

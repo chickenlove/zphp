@@ -23,8 +23,11 @@ class Connection {
         return isset(self::$conns[$uid]);
     }
 
-    public static function boardcast($data) {
+    public static function boardcast($data, $myid=0) {
         foreach(self::$conns as $conn) {
+            if($myid == $conn['uid']) {
+                continue;
+            }
             $conn['conn']->write($data);
         }
     }
@@ -48,5 +51,9 @@ class Connection {
                 self::close($uid);
             }
         }
+    }
+
+    public static function getAll() {
+        return self::$conns;
     }
 }
