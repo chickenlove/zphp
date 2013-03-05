@@ -61,38 +61,7 @@ class CtrlBase implements IController {
         
     }
 
-    /**
-     * 获取用户信息并尝试自动登陆
-     *
-     */
-    protected function setLoginInfo() {
-        $this->loginInfo = common\Utils::getLoginInfo();
-
-        if (empty($this->loginInfo)) {
-            $apiService = common\ClassLocator::getService('API');
-            $userId = $apiService->getLoginUserId();
-
-            if (empty($userId)) {
-                $this->loginInfo = null;
-            } else {
-                $this->loginInfo = common\Utils::setLoginInfo($userId);
-            }
-        }
-    }
-
-    /**
-     * 获取当前用户
-     *
-     * @return entity\User
-     */
-    protected function getLoginUser() {
-        if (empty($this->loginInfo)) {
-            throw new common\GameException('0_needLogin');
-        }
-
-        $userService = common\ClassLocator::getService('User');
-        return $userService->fetchById($this->loginInfo['userId']);
-    }
+    
 
     /**
      * 获取整数参数
