@@ -30,7 +30,7 @@ https://github.com/matyhtf/php_swoole
      
 聊天室demo:
 =============
-    
+    https://github.com/shenzhe/zchat
 
 
 
@@ -42,8 +42,12 @@ https://github.com/matyhtf/php_swoole
         --socket.php    //socket服务
 
     classes       //业务逻辑
-        -- ctrl  //ctrl目录
+        -- common       //一些公共函数庘
+        -- ctrl         //ctrl层
             IndexCtrl.php
+        -- service      //业务逻辑层
+        -- entity       //实体层
+        -- dao          //数据层
 
     framework //框架目录
 
@@ -72,7 +76,7 @@ index.php代码示例：
     $rootPath = realpath('..');
     require ($rootPath . DIRECTORY_SEPARATOR . "classes" . DIRECTORY_SEPARATOR . "framework" . DIRECTORY_SEPARATOR . "setup.php");
     Context::setRootPath($rootPath);
-    $infPath = Context::getRootPath() . DIRECTORY_SEPARATOR . 'inf' . DIRECTORY_SEPARATOR . 'default';
+    $infPath = Context::getRootPath() . DS . 'inf' . DS . 'default';
     Context::setInfoPath($infPath);
     Context::initialize();  //加载inf相关目录下所有文件
     new HTTPRequestDispatcher()->dispatch();
@@ -81,10 +85,31 @@ IndexCtrl.php代码示例：
 
     <?php
     namespace ctrl;
+    use framework\DataView;
     class IndexCtrl {
         public function index() {
             echo 'hello world';
         }
+
+        public function json() {
+            return DataView::getView(
+                array("a"=>"b","c"=>123)
+            );
+        }
+
+        /*
+         *  添加 template/index/html.php文件,内容如下
+         *  <?php
+         *      echo $a.$c;
+         */
+
+        public function html() {
+            return DataView::getView(
+                array("a"=>"b","c"=>123),
+                'html',
+                'index/html.php'
+            );
+        }
     }
 
-输入 http://host/?act=Index.index 访问 
+输入 http://host/?act=Index.index http://host/?act=Index.json  http://host/?act=Index.html 访问 

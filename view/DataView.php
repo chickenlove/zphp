@@ -24,8 +24,12 @@ class DataView {
             case 'xml':
                 return new XMLView($model);
                 break;
-            case 'html':
+            case 'smarty':
                 return new SmartyView($model, $fileName);
+                break;
+            case 'html':
+                return new TemplateView($model, $fileName);
+                break;
             case 'string':
                 return new StringView($model);
                 break;
