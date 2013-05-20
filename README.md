@@ -26,6 +26,19 @@ https://github.com/matyhtf/php_swoole
 
 其它方案需要扩展：http://pecl.php.net/package/libevent
 
+增加 fcgi 模块
+===================================================
+socket层可直接通过fastcgi调用php, 解耦网关和业务逻辑
+
+    $fcgiClient = new \framework\fcgi\Client('127.0.0.1', '9000');
+        $response = $fcgiClient->request(
+            ['query'=>http_build_query([
+                'k1'=>'v1',
+                'k2'=>'v2'
+            ])]
+        );
+
+
 
      
 聊天室demo:
