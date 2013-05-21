@@ -43,6 +43,12 @@ class PDOHelper {
         return $this->tableName;
     }
 
+    public function setClassName($className) {
+        if($this->className != $className) {
+            $this->className = $className;
+            $this->tableName = null;
+        }
+    }
 
     public function getClassName() {
         return $this->className;
