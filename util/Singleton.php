@@ -14,7 +14,7 @@ class Singleton {
     /**
      * 根据类名获取该类的单例
      * @param String $className 类名
-     * @return Object $className类的单独实例
+     * @return $className
      */
     public static function get($className) {
         if (isset(self::$instances[$className])) {

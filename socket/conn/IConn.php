@@ -14,7 +14,6 @@ interface IConn {
     public function uphb($uid);
     public function heartbeat($uid, $ntime);
     public function delete($fd, $uid, $old);
-    public function clear($fd, $uid);
-
+    public function clear();
 
 }

@@ -9,6 +9,8 @@ interface ICacheHelper {
 
     public function enable();
 
+    public function selectDb($db);
+
     public function add($key, $value);
 
     public function set($key, $value);

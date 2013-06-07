@@ -13,25 +13,26 @@ use framework\view\JSONView;
 if(!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
-
-require(__DIR__ . DS . "core/Context.php");
-
 set_exception_handler("exception_handler");
 
 date_default_timezone_set('Asia/Shanghai');
-
-function __autoload($class) {
-    $baseClasspath = str_replace('\\', DS, $class) . '.php';
-    if(is_file(Context::getRootPath(). DS. $baseClasspath)) {  //框架文件
-        $classpath = Context::getRootPath(). DS. $baseClasspath;
-    }elseif(is_file(Context::getClassesRoot(). DS. $baseClasspath)){  //classes文件
-        $classpath = Context::getClassesRoot() . DS . $baseClasspath;
-    } else {    //第三方库文件
-        $classpath = Context::getRootPath(). DS. 'lib' . DS. $baseClasspath;
+spl_autoload_register(function($class){
+    static $path = null;
+    if($path==null) {
+        $path = dirname(dirname(__DIR__));
     }
-    require($classpath);
-}
-
+    $baseClasspath = str_replace('\\', DS, $class) . '.php';
+    if(is_file($path. DS. $baseClasspath)) {  //框架文件
+        $classpath = $path. DS. $baseClasspath;
+    }elseif(is_file($path. DS. 'classes'. DS . $baseClasspath)){  //classes文件
+        $classpath = $path . DS . 'classes'. DS . $baseClasspath;
+    } else {    //第三方库文件
+        $classpath = $path. DS. 'lib' . DS. $baseClasspath;
+    }
+    if(is_file($classpath)) {
+        require($classpath);
+    }
+});
 function exception_handler($exception) {
     $exceptionView = new JSONView(Formater::formatException($exception));
     $exceptionView->display();

@@ -48,8 +48,10 @@ class RedisHelper implements IRank {
      * @param int $start
      * @param int $limit
      * @param bool $score
+     * @param int $desc
      * @return mixed
      */
+
     public function getRank($rankType, $start = 0, $limit = 100, $score = true, $desc=0) {
         if($desc) {
             return $this->redis->zRevRange($rankType, $start, $start + $limit, $score);
@@ -95,10 +97,11 @@ class RedisHelper implements IRank {
     }
 
     /**
-     *
      * 获取指定key的排行
      * @param type $rankType
      * @param type $key
+     * @param int $desc
+     * @return mixed
      */
     public function getRankByKey($rankType, $key, $desc=0) {
         if($desc) {

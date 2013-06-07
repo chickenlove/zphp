@@ -33,7 +33,6 @@ class PDOHelper {
         $this->dbName = $dbName;
     }
 
-
     public function getTableName() {
         if (empty($this->tableName)) {
             $classRef = new \ReflectionClass($this->className);

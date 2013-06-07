@@ -13,22 +13,22 @@ class Formater {
      * 格式化异常
      *
      * @param Exception $exception
+     * @param bool $trace
      * @return array
      */
-    public static function formatException(\Exception $exception) {
+    public static function formatException(\Exception $exception, $trace=true) {
         $exceptionHash = array(
             'className' => 'Exception',
             'message' => $exception->getMessage(),
             'code' => $exception->getCode(),
             'file' => $exception->getFile(),
             'line' => $exception->getLine(),
-            'userAgent' => $_SERVER['HTTP_USER_AGENT'],
+            'userAgent' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '',
             'trace' => array(),
         );
 
-        if (true) {
+        if ($trace) {
             $traceItems = $exception->getTrace();
-
             foreach ($traceItems as $traceItem) {
                 $traceHash = array(
                     'file' => isset($traceItem['file']) ? $traceItem['file'] : 'null',

@@ -40,6 +40,7 @@ class RedisManager {
      * 获取Redis实例
      *
      * @param string $name
+     * @param int $pconnect
      * @return \Redis
      */
     public static function getInstance($name, $pconnect) {
@@ -64,9 +65,10 @@ class RedisManager {
     }
 
     /**
-     *
      * 手动关闭链接
-     * @return boolean
+     * @param bool $pconnect
+     * @param array $names
+     * @return bool
      */
     public static function closeInstance($pconnect=false, array $names=[]) {
         if (empty(self::$instances) || $pconnect) {

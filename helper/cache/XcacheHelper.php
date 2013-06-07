@@ -15,6 +15,10 @@ class XcacheHelper implements ICacheHelper {
         return \function_exists('xcache_set');
     }
 
+    public function selectDb($db) {
+        return true;
+    }
+
     public function add($key, $value, $timeOut = 0) {
         if (\xcache_isset($key)) {
             return false;

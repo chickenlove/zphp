@@ -12,7 +12,11 @@ class ApcHelper implements ICacheHelper {
     }
 
     public function enable() {
-        return \function_exists('apc_add');
+        return \function_exists('apcu_add');
+    }
+
+    public function selectDb($db) {
+        return true;
     }
 
     public function add($key, $value, $timeOut = 0) {

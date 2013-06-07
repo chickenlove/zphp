@@ -21,6 +21,10 @@ class RedisHelper implements ICacheHelper {
         return true;
     }
 
+    public function selectDb($db) {
+        self::$redis->select($db);
+    }
+
     public function add($key, $value, $expiration = 0) {
         $result = self::$redis->setNx($key, $value);
         if ($result && $expiration > 0) {

@@ -38,6 +38,10 @@ class MemcachedHelper implements ICacheHelper {
         return $this->memcached;
     }
 
+    public function selectDb($db) {
+        return true;
+    }
+
     /**
      * 添加新数据（如存在则失败）
      *

@@ -204,7 +204,6 @@ class Client
             'CONTENT_LENGTH' => 0,
             'REQUEST_TIME'=>time()
         );
-        //print_r($params);
         $response = '';
         $this->connect();
 

@@ -12,13 +12,17 @@ class YacHelper implements ICacheHelper {
     private $yac = null;
 
     public function __construct($name = "", $pconnect = "") {
-        if($this->enable() && empty($yac)) {
+        if($this->enable() && empty($this->yac)) {
             $this->yac = new Yac();
         }
     }
 
     public function enable() {
         return \extension_loaded('yac');
+    }
+
+    public function selectDb($db) {
+        return true;
     }
 
     public function add($key, $value, $timeOut = 0) {
@@ -61,7 +65,7 @@ class YacHelper implements ICacheHelper {
     }
 
     public function clear() {
-        return $this->yac->clear();
+        return $this->yac->flush();
     }
 
 }
